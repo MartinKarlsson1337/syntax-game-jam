@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5yukhhkf2qpn"]
+
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_vpb5d"]
+[ext_resource type="Texture2D" uid="uid://ci3pb0yy0v7tu" path="res://newChar.png" id="2_72nqb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2yl2"]
+size = Vector2(14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sc2rh"]
+atlas = ExtResource("2_72nqb")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g13g5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sc2rh")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="PlayerBody" type="CharacterBody2D"]
+script = ExtResource("1_vpb5d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_n2yl2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_g13g5")
+animation = &"new_animation"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
