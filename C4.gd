@@ -21,7 +21,7 @@ func _process(delta):
 func explode():
 	animator.play("explode")
 	if playerIsInExplosionArea:
-		playerExploded.emit()
+		playerExploded.emit(position)
 		
 	
 func delete():

@@ -1,14 +1,11 @@
 extends CharacterBody2D
 
 @onready var sprite = $AnimatedSprite2D
-@export var speed = 1
-@export var jump_speed = -1800
-@export var gravity = 4000
-@export_range(0.0, 1.0) var friction = 0.1
-@export_range(0.0 , 1.0) var acceleration = 0.25
+@export var speed = 100
+@export_range(0.0, 1.0) var friction = 0.4
+@export_range(0.0 , 1.0) var acceleration = 0.1
 var dir = 'default'
 var input_active = true
-
 
 func _process(_delta):
 	sprite.play(dir)
