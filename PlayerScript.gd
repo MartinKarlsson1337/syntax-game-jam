@@ -9,6 +9,7 @@ extends CharacterBody2D
 var dir = 'default'
 var input_active = true
 
+
 func _process(_delta):
 	sprite.play(dir)
 
@@ -36,3 +37,4 @@ func _physics_process(delta):
 		velocity = velocity.lerp(Vector2.ZERO, friction)
 		dir = 'idle'
 	move_and_slide()
+

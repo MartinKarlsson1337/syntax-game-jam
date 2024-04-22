@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://djhsb3p4ohvuc"]
+[gd_scene load_steps=7 format=3 uid="uid://djhsb3p4ohvuc"]
 
 [ext_resource type="PackedScene" uid="uid://c5yukhhkf2qpn" path="res://player_body.tscn" id="1_4lqkl"]
+[ext_resource type="Script" path="res://game_manager.gd" id="1_xweo7"]
 [ext_resource type="Texture2D" uid="uid://inulp252t8gq" path="res://KitchenFloor.png" id="3_hnvyc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qdnyw"]
@@ -31,9 +32,9 @@ sources/0 = SubResource("TileSetAtlasSource_qdnyw")
 sources/3 = SubResource("TileSetAtlasSource_5qk2y")
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_xweo7")
 
 [node name="PlayerBody" parent="." instance=ExtResource("1_4lqkl")]
-friction = 0.4
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -43,3 +44,9 @@ layer_0/tile_data = PackedInt32Array(131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 6
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="BombTimer" type="Timer" parent="."]
+wait_time = 3.942
+autostart = true
+
+[connection signal="timeout" from="BombTimer" to="." method="_on_bomb_timer_timeout"]
