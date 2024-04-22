@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bj0fa3mhuclym"]
+[gd_scene load_steps=15 format=3 uid="uid://bj0fa3mhuclym"]
 
 [ext_resource type="Texture2D" uid="uid://1f5av6khgny6" path="res://C4.png" id="1_u268o"]
 [ext_resource type="Texture2D" uid="uid://blaeyo7255lp5" path="res://tinySFX.png" id="2_ja6l6"]
@@ -76,7 +76,12 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5q6i"]
+radius = 28.0
+
 [node name="C4" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("3_73bbk")
 speed = 1000
@@ -100,7 +105,14 @@ wait_time = 3.5
 one_shot = true
 autostart = true
 
+[node name="ExplosionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
+shape = SubResource("CircleShape2D_j5q6i")
+
 [connection signal="animation_finished" from="animator" to="." method="_on_animator_animation_finished"]
 [connection signal="animation_looped" from="animator" to="." method="_on_animator_animation_looped"]
 [connection signal="timeout" from="explodeTimer" to="." method="_on_explode_timer_timeout"]
 [connection signal="timeout" from="deleteTimer" to="." method="_on_delete_timer_timeout"]
+[connection signal="body_entered" from="ExplosionArea" to="." method="_on_explosion_area_body_entered"]
+[connection signal="body_exited" from="ExplosionArea" to="." method="_on_explosion_area_body_exited"]

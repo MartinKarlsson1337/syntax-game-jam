@@ -45,8 +45,8 @@ layer_0/tile_data = PackedInt32Array(131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 6
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 
-[node name="BombTimer" type="Timer" parent="."]
+[node name="BombSpawnTimer" type="Timer" parent="."]
 wait_time = 3.942
 autostart = true
 
-[connection signal="timeout" from="BombTimer" to="." method="_on_bomb_timer_timeout"]
+[connection signal="timeout" from="BombSpawnTimer" to="." method="_on_bomb_timer_timeout"]

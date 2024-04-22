@@ -3,6 +3,7 @@ extends Node2D
 var c4 = preload("res://c_4.tscn")
 var playerPosition = Vector2.ZERO
 @onready var player = $PlayerBody
+var playerHealth = 10
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -5,6 +5,8 @@ extends RigidBody2D
 @export var speed = 100
 @export_range(0.0, 1.0) var friction = 0.1
 @export_range(0.0 , 1.0) var acceleration = 0.25
+var playerIsInExplosionArea = false
+signal playerExploded
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	linear_velocity = linear_velocity.lerp(throwDirection * speed, acceleration)
@@ -17,6 +19,9 @@ func _process(delta):
 
 func explode():
 	animator.play("explode")
+	if playerIsInExplosionArea:
+		playerExploded.emit()
+		
 	
 func delete():
 	queue_free()
@@ -29,3 +34,14 @@ func _on_explode_timer_timeout():
 func _on_delete_timer_timeout():
 	delete()
 
+
+
+func _on_explosion_area_body_entered(body):
+	if body.name == "PlayerBody":
+		playerIsInExplosionArea = true
+
+
+
+func _on_explosion_area_body_exited(body):
+	if body.name == "PlayerBody":
+		playerIsInExplosionArea = false
