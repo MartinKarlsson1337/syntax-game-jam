@@ -46,7 +46,7 @@ layer_0/tile_data = PackedInt32Array(131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 6
 zoom = Vector2(3, 3)
 
 [node name="BombSpawnTimer" type="Timer" parent="."]
-wait_time = 3.942
+wait_time = 1.297
 autostart = true
 
 [connection signal="timeout" from="BombSpawnTimer" to="." method="_on_bomb_timer_timeout"]

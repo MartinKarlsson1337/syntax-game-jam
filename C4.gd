@@ -10,6 +10,7 @@ signal playerExploded
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	linear_velocity = linear_velocity.lerp(throwDirection * speed, acceleration)
+	playerExploded.connect(get_parent()._on_player_exploded)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
