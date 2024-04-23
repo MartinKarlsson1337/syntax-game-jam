@@ -1,52 +1,50 @@
-[gd_scene load_steps=15 format=3 uid="uid://bj0fa3mhuclym"]
+[gd_scene load_steps=14 format=3 uid="uid://dgpva3d2i0x2y"]
 
 [ext_resource type="Texture2D" uid="uid://1f5av6khgny6" path="res://C4.png" id="1_u268o"]
+[ext_resource type="Script" path="res://c_4.gd" id="1_xxyeb"]
+[ext_resource type="PackedScene" uid="uid://bj0fa3mhuclym" path="res://bomb_base.tscn" id="1_xyjug"]
 [ext_resource type="Texture2D" uid="uid://blaeyo7255lp5" path="res://tinySFX.png" id="2_ja6l6"]
-[ext_resource type="Script" path="res://C4.gd" id="3_73bbk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mk0kp"]
-size = Vector2(11, 15)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dtuj6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_medwj"]
 atlas = ExtResource("1_u268o")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8htqo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tqdu"]
 atlas = ExtResource("1_u268o")
 region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n1m6r"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uopwy"]
 atlas = ExtResource("2_ja6l6")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_81tcg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fia8b"]
 atlas = ExtResource("2_ja6l6")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yybpg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_todwa"]
 atlas = ExtResource("2_ja6l6")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dtdxl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lo0a2"]
 atlas = ExtResource("2_ja6l6")
 region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_osi1h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dn5u"]
 atlas = ExtResource("2_ja6l6")
 region = Rect2(16, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_04grt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ro0lx"]
 atlas = ExtResource("2_ja6l6")
 region = Rect2(32, 16, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5ickb"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_dr6w8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dtuj6")
+"texture": SubResource("AtlasTexture_medwj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8htqo")
+"texture": SubResource("AtlasTexture_1tqdu")
 }],
 "loop": true,
 "name": &"default",
@@ -54,65 +52,33 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n1m6r")
+"texture": SubResource("AtlasTexture_uopwy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_81tcg")
+"texture": SubResource("AtlasTexture_fia8b")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yybpg")
+"texture": SubResource("AtlasTexture_todwa")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dtdxl")
+"texture": SubResource("AtlasTexture_lo0a2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_osi1h")
+"texture": SubResource("AtlasTexture_1dn5u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_04grt")
+"texture": SubResource("AtlasTexture_ro0lx")
 }],
 "loop": true,
 "name": &"explode",
 "speed": 7.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j5q6i"]
-radius = 28.0
+[node name="C4" instance=ExtResource("1_xyjug")]
+script = ExtResource("1_xxyeb")
 
-[node name="C4" type="RigidBody2D"]
-collision_layer = 0
-collision_mask = 0
-gravity_scale = 0.0
-script = ExtResource("3_73bbk")
-speed = 1000
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_mk0kp")
-
-[node name="animator" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_5ickb")
+[node name="animator" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_dr6w8")
+animation = &"default"
 autoplay = "default"
-
-[node name="explodeTimer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-autostart = true
-
-[node name="deleteTimer" type="Timer" parent="."]
-wait_time = 3.5
-one_shot = true
-autostart = true
-
-[node name="ExplosionArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
-shape = SubResource("CircleShape2D_j5q6i")
-
-[connection signal="animation_finished" from="animator" to="." method="_on_animator_animation_finished"]
-[connection signal="animation_looped" from="animator" to="." method="_on_animator_animation_looped"]
-[connection signal="timeout" from="explodeTimer" to="." method="_on_explode_timer_timeout"]
-[connection signal="timeout" from="deleteTimer" to="." method="_on_delete_timer_timeout"]
-[connection signal="body_entered" from="ExplosionArea" to="." method="_on_explosion_area_body_entered"]
-[connection signal="body_exited" from="ExplosionArea" to="." method="_on_explosion_area_body_exited"]
+frame_progress = 0.907922

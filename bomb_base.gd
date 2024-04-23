@@ -1,15 +1,15 @@
 extends RigidBody2D
-
-@onready var throwDirection = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+class_name bomb_base
+@onready var throw_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
 @onready var animator = $animator
-@export var speed = 100
+@export var speed = 1000
 @export_range(0.0, 1.0) var friction = 0.1
 @export_range(0.0 , 1.0) var acceleration = 0.25
 var playerIsInExplosionArea = false
 signal playerExploded
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	linear_velocity = linear_velocity.lerp(throwDirection * speed, acceleration)
+	linear_velocity = linear_velocity.lerp(throw_direction * speed, acceleration)
 	playerExploded.connect(get_parent()._on_player_exploded)
 	pass
 
@@ -34,7 +34,6 @@ func _on_explode_timer_timeout():
 
 func _on_delete_timer_timeout():
 	delete()
-
 
 
 func _on_explosion_area_body_entered(body):
