@@ -3,8 +3,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mk0kp"]
 size = Vector2(11, 15)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5ickb"]
-animations = []
+[sub_resource type="SpriteFrames" id="SpriteFrames_p65rc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5q6i"]
 radius = 28.0
@@ -20,8 +19,7 @@ shape = SubResource("RectangleShape2D_mk0kp")
 
 [node name="animator" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_5ickb")
-animation = &""
+sprite_frames = SubResource("SpriteFrames_p65rc")
 
 [node name="explodeTimer" type="Timer" parent="."]
 wait_time = 3.0

@@ -20,6 +20,7 @@ func spawn_c4(at_position):
 func _on_player_exploded(bomb_position):
 	playerHealth = playerHealth-1
 	push_player(player.position - bomb_position)
+	print("Ouch!")
 	if playerHealth <= 0:
 		get_tree().reload_current_scene()
 
