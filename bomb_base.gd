@@ -2,6 +2,8 @@ extends RigidBody2D
 class_name bomb_base
 @onready var throw_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
 @onready var animator = $animator
+@onready var throw = $throwSound
+@onready var explosion = $explosion
 @export var speed = 1000
 @export_range(0.0, 1.0) var friction = 0.1
 @export_range(0.0 , 1.0) var acceleration = 0.25
@@ -12,7 +14,7 @@ signal playerExploded
 func _ready():
 	linear_velocity = linear_velocity.lerp(throw_direction * speed, acceleration)
 	playerExploded.connect(get_parent()._on_player_exploded)
-	pass
+	throw.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -21,6 +23,7 @@ func _process(delta):
 
 func explode():
 	animator.play("explode")
+	explosion.play()
 	if playerIsInExplosionArea:
 		playerExploded.emit(position)
 		

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4k3i6lkiuprl"]
+[gd_scene load_steps=10 format=3 uid="uid://d4k3i6lkiuprl"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_sgm0y"]
 [ext_resource type="PackedScene" uid="uid://cy5gxk8kb74uu" path="res://button.tscn" id="2_jduhk"]
 [ext_resource type="FontFile" uid="uid://dhi4oqbjfmdwp" path="res://joystix monospace.otf" id="3_52sf6"]
+[ext_resource type="AudioStream" uid="uid://bnulvhrfscwap" path="res://DS_STW2_FX_One_Shot_Gameboi_Serpantine.wav" id="4_5f1aj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dffv4"]
 font = ExtResource("3_52sf6")
@@ -12,6 +13,67 @@ font_size = 100
 font = ExtResource("3_52sf6")
 font_size = 100
 font_color = Color(0.705882, 0.321569, 0.321569, 1)
+
+[sub_resource type="Animation" id="Animation_lde0k"]
+resource_name = "fade_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_64uu7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nik23"]
+_data = {
+"RESET": SubResource("Animation_64uu7"),
+"fade_out": SubResource("Animation_lde0k")
+}
 
 [node name="main_menu" type="Node2D"]
 script = ExtResource("1_sgm0y")
@@ -47,6 +109,23 @@ text = "enemy"
 label_settings = SubResource("LabelSettings_qwaot")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nik23")
+}
+
+[node name="ColorRect" type="ColorRect" parent="AnimationPlayer"]
+visible = false
+offset_left = -191.0
+offset_top = -110.0
+offset_right = 193.0
+offset_bottom = 108.0
+color = Color(0, 0, 0, 0)
+
+[node name="blip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5f1aj")
+volume_db = -20.0
 
 [connection signal="button_pressed" from="start" to="." method="_on_start_button_pressed"]
 [connection signal="button_pressed" from="quit" to="." method="_on_quit_button_pressed"]

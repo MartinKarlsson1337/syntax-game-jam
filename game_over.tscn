@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgrlhk3ppyjvf"]
+[gd_scene load_steps=5 format=3 uid="uid://bgrlhk3ppyjvf"]
 
 [ext_resource type="Script" path="res://game_over.gd" id="1_erbg6"]
 [ext_resource type="FontFile" uid="uid://dhi4oqbjfmdwp" path="res://joystix monospace.otf" id="2_mbkk0"]
+[ext_resource type="AudioStream" uid="uid://b8eqmqory0cpt" path="res://bad_job.mp3" id="3_y524g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j54tm"]
 font = ExtResource("2_mbkk0")
@@ -34,3 +35,7 @@ text = "press enter
 to continue"
 label_settings = SubResource("LabelSettings_j54tm")
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_y524g")
+autoplay = true
