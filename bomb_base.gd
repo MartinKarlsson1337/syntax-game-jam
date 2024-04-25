@@ -7,6 +7,7 @@ class_name bomb_base
 @export_range(0.0 , 1.0) var acceleration = 0.25
 var playerIsInExplosionArea = false
 signal playerExploded
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	linear_velocity = linear_velocity.lerp(throw_direction * speed, acceleration)
@@ -40,8 +41,17 @@ func _on_explosion_area_body_entered(body):
 	if body.name == "PlayerBody":
 		playerIsInExplosionArea = true
 
+func pause():
+	get_child(2).paused = true
+	get_child(3).paused = true
+	animator.stop()
 
+func resume():
+	get_child(2).paused = false
+	get_child(3).paused = false
+	animator.play()
 
 func _on_explosion_area_body_exited(body):
 	if body.name == "PlayerBody":
 		playerIsInExplosionArea = false
+		

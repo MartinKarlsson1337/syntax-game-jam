@@ -8,7 +8,10 @@ var dir = 'default'
 var input_active = true
 
 func _process(_delta):
-	sprite.play(dir)
+	if input_active:
+		sprite.play(dir)
+	else:
+		sprite.stop()
 
 func get_input():
 	var input = Vector2()
@@ -24,6 +27,7 @@ func get_input():
 	if Input.is_action_pressed('up'):
 		input.y -= 1
 		dir = 'up'
+		
 	return input
 
 func _physics_process(delta):

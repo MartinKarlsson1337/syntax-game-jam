@@ -14,5 +14,5 @@ func _ready():
 		hearts.append(instance)
 
 func destroy_heart():
-	hearts[hearts.size()-1].get_child(0).play('spin_and_disappear')
+	hearts[hearts.size()-1].get_child(0).play('spin_and_disappear') # Plays animation for leftmost heart
 	hearts.pop_back()

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4k3i6lkiuprl"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_sgm0y"]
+[ext_resource type="PackedScene" uid="uid://cy5gxk8kb74uu" path="res://button.tscn" id="2_jduhk"]
+
+[node name="main_menu" type="Node2D"]
+script = ExtResource("1_sgm0y")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="start" parent="." instance=ExtResource("2_jduhk")]
+
+[node name="quit" parent="." instance=ExtResource("2_jduhk")]
+position = Vector2(0, 19)
+text = "quit"
+
+[connection signal="button_pressed" from="start" to="." method="_on_start_button_pressed"]
+[connection signal="button_pressed" from="quit" to="." method="_on_quit_button_pressed"]

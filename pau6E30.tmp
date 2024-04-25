@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyf1aor36um42"]
+
+[ext_resource type="Script" path="res://pause.gd" id="1_2s4wy"]
+[ext_resource type="FontFile" uid="uid://dhi4oqbjfmdwp" path="res://joystix monospace.otf" id="1_qlpse"]
+[ext_resource type="PackedScene" uid="uid://cy5gxk8kb74uu" path="res://button.tscn" id="3_tkx34"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_betfr"]
+font = ExtResource("1_qlpse")
+font_size = 100
+font_color = Color(0.294118, 0.254902, 0.345098, 1)
+
+[node name="pause" type="Node2D"]
+script = ExtResource("1_2s4wy")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -21.0
+offset_top = -54.0
+offset_right = 394.0
+offset_bottom = 66.0
+scale = Vector2(0.1, 0.1)
+text = "pause"
+label_settings = SubResource("LabelSettings_betfr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="button" parent="." instance=ExtResource("3_tkx34")]
+position = Vector2(0, -34)
+text = "resume"

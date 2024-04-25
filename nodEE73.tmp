@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://djhsb3p4ohvuc"]
+
+[ext_resource type="Script" path="res://state_manager.gd" id="1_i8vbo"]
+[ext_resource type="PackedScene" uid="uid://b5c4hjmx3mgcr" path="res://pause.tscn" id="2_1nqe0"]
+[ext_resource type="FontFile" uid="uid://dhi4oqbjfmdwp" path="res://joystix monospace.otf" id="4_gan5q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_betfr"]
+font = ExtResource("4_gan5q")
+
+[node name="StateManager" type="Node2D"]
+script = ExtResource("1_i8vbo")
+
+[node name="pause" parent="." instance=ExtResource("2_1nqe0")]
+
+[node name="Label" type="Label" parent="pause"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "pause"
+label_settings = SubResource("LabelSettings_betfr")
