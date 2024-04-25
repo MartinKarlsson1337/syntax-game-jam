@@ -1,10 +1,11 @@
 extends Node2D
 
-var c4 = preload("res://c_4.tscn")
+var bombs = [preload("res://grenade.tscn"), preload("res://c_4.tscn")]
 var playerPosition = Vector2.ZERO
 @onready var player = $PlayerBody
 @onready var hp = $hp_counter
 var playerHealth = 3
+var playerLevel = 1
 @export var push_speed = 1000
 @export var acceleration = 0.25
 var input_active = true
@@ -17,7 +18,7 @@ func _process(delta):
 
 func spawn_c4(at_position):
 	if input_active:
-		var instance = c4.instantiate()
+		var instance = bombs.pick_random().instantiate()
 		instance.position = at_position
 		add_child(instance)
 
@@ -49,7 +50,7 @@ func resume():
 	
 func pause_bombs():
 	var children = get_children()
-	var bombs = children.slice(5, children.size())
+	var bombs = children.slice(6, children.size())
 	for bomb in bombs:
 		bomb.pause()
 		

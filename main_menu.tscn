@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4k3i6lkiuprl"]
+[gd_scene load_steps=6 format=3 uid="uid://d4k3i6lkiuprl"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_sgm0y"]
 [ext_resource type="PackedScene" uid="uid://cy5gxk8kb74uu" path="res://button.tscn" id="2_jduhk"]
+[ext_resource type="FontFile" uid="uid://dhi4oqbjfmdwp" path="res://joystix monospace.otf" id="3_52sf6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dffv4"]
+font = ExtResource("3_52sf6")
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_qwaot"]
+font = ExtResource("3_52sf6")
+font_size = 100
+font_color = Color(0.705882, 0.321569, 0.321569, 1)
 
 [node name="main_menu" type="Node2D"]
 script = ExtResource("1_sgm0y")
@@ -14,6 +24,29 @@ zoom = Vector2(3, 3)
 [node name="quit" parent="." instance=ExtResource("2_jduhk")]
 position = Vector2(0, 19)
 text = "quit"
+
+[node name="Title" type="Label" parent="."]
+offset_left = -53.0
+offset_top = -55.0
+offset_right = 1026.0
+offset_bottom = 188.0
+scale = Vector2(0.1, 0.1)
+text = "you are your
+"
+label_settings = SubResource("LabelSettings_dffv4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = -21.0
+offset_top = -32.0
+offset_right = 394.0
+offset_bottom = 88.0
+scale = Vector2(0.1, 0.1)
+text = "enemy"
+label_settings = SubResource("LabelSettings_qwaot")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="button_pressed" from="start" to="." method="_on_start_button_pressed"]
 [connection signal="button_pressed" from="quit" to="." method="_on_quit_button_pressed"]

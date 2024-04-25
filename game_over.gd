@@ -8,12 +8,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
-
-func _on_resume_button_pressed():
-	get_parent().go_to_state('play')
-
-
-func _on_quit_button_pressed():
-	get_parent().go_to_state('quit')
+	if Input.is_action_pressed("continue"):
+		get_parent().go_to_state('main_menu')

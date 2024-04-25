@@ -3,6 +3,7 @@ extends Node2D
 var play_state = preload("res://play_state.tscn")
 var main_menu = preload("res://main_menu.tscn")
 var pause_state = preload("res://pause.tscn")
+var game_over_state = preload("res://game_over.tscn")
 var states = ["default", "play", "pause", "main_menu", "game_over", "quit"]
 var current_state = 'default'
 
@@ -38,6 +39,13 @@ func go_to_main_menu():
 	else:
 		instantiate_state(main_menu)
 
+func go_to_game_over():
+	if current_state == 'game_over':
+		print("Already in game over!")
+	elif current_state == 'play':
+		get_child(0).pause()
+		instantiate_state(game_over_state)
+
 func go_to_state(new_state):
 	if new_state not in states:
 		print('Not a valid state!')
@@ -53,7 +61,7 @@ func go_to_state(new_state):
 				remove_child(get_children()[0])
 				go_to_main_menu()
 			'game_over':
-				go_to_main_menu()
+				go_to_game_over()
 			'quit':
 				get_tree().quit()
 		current_state = new_state

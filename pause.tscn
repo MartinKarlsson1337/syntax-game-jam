@@ -24,8 +24,13 @@ label_settings = SubResource("LabelSettings_betfr")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 
-[node name="button" parent="." instance=ExtResource("3_tkx34")]
-position = Vector2(0, -34)
+[node name="resume" parent="." instance=ExtResource("3_tkx34")]
+position = Vector2(0, -30)
 text = "resume"
 
-[connection signal="button_pressed" from="button" to="." method="_on_button_button_pressed"]
+[node name="quit" parent="." instance=ExtResource("3_tkx34")]
+position = Vector2(0, -12)
+text = "quit"
+
+[connection signal="button_pressed" from="resume" to="." method="_on_resume_button_pressed"]
+[connection signal="button_pressed" from="quit" to="." method="_on_quit_button_pressed"]

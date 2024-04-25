@@ -1,0 +1,76 @@
+[gd_scene load_steps=13 format=3 uid="uid://5wra16ln8xgn"]
+
+[ext_resource type="PackedScene" uid="uid://bj0fa3mhuclym" path="res://bomb_base.tscn" id="1_o0080"]
+[ext_resource type="Script" path="res://grenade.gd" id="2_a1igg"]
+[ext_resource type="Texture2D" uid="uid://db4xvi7i8lcvb" path="res://grenade.png" id="3_hkic1"]
+[ext_resource type="Texture2D" uid="uid://blaeyo7255lp5" path="res://tinySFX.png" id="4_yf4dy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7h2vs"]
+atlas = ExtResource("3_hkic1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psjcw"]
+atlas = ExtResource("4_yf4dy")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkx4u"]
+atlas = ExtResource("4_yf4dy")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljvq4"]
+atlas = ExtResource("4_yf4dy")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gehb"]
+atlas = ExtResource("4_yf4dy")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vslw0"]
+atlas = ExtResource("4_yf4dy")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ammas"]
+atlas = ExtResource("4_yf4dy")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_snbm4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7h2vs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_psjcw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkx4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljvq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gehb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vslw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ammas")
+}],
+"loop": true,
+"name": &"explode",
+"speed": 7.0
+}]
+
+[node name="grenade" instance=ExtResource("1_o0080")]
+script = ExtResource("2_a1igg")
+
+[node name="animator" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_snbm4")
+autoplay = "default"
+frame_progress = 0.145951
