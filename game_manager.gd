@@ -3,7 +3,8 @@ extends Node2D
 var c4 = preload("res://c_4.tscn")
 var playerPosition = Vector2.ZERO
 @onready var player = $PlayerBody
-var playerHealth = 5
+@onready var hp = $hpCounter
+var playerHealth = 3
 @export var push_speed = 1000
 @export var acceleration = 0.25
 
@@ -20,7 +21,7 @@ func spawn_c4(at_position):
 func _on_player_exploded(bomb_position):
 	playerHealth = playerHealth-1
 	push_player(player.position - bomb_position)
-	print("Ouch!")
+	hp.destroy_heart()
 	if playerHealth <= 0:
 		get_tree().reload_current_scene()
 

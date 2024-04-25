@@ -176,9 +176,6 @@ animations = [{
 
 [node name="PlayerBody" type="CharacterBody2D"]
 script = ExtResource("1_xnu07")
-speed = 100
-friction = 0.4
-acceleration = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
