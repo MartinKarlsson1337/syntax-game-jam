@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/soundtrack.mp3-a1d861cc7fc53e08d44e0d07414e29
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=97.0
 beat_count=0
 bar_beats=4

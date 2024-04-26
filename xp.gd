@@ -2,12 +2,10 @@ extends Sprite2D
 
 @export var x_bounds = [-180, 180]
 @export var y_bounds = [-90, 90]
+signal picked_up
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var x = randf_range(x_bounds[1], x_bounds[0])
-	var y = randf_range(y_bounds[1], y_bounds[0])
-	position = Vector2(x, y)
-	print("Spawned xp at: " + str(position))
+	picked_up.connect(get_parent()._on_xp_picked_up)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,4 +14,4 @@ func _process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	queue_free()
+	picked_up.emit()

@@ -61,8 +61,11 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ammas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_psjcw")
 }],
-"loop": true,
+"loop": false,
 "name": &"explode",
 "speed": 7.0
 }]
@@ -72,5 +75,5 @@ script = ExtResource("2_a1igg")
 
 [node name="animator" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_snbm4")
+animation = &"explode"
 autoplay = "default"
-frame_progress = 0.145951

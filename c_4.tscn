@@ -68,8 +68,11 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ro0lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uopwy")
 }],
-"loop": true,
+"loop": false,
 "name": &"explode",
 "speed": 7.0
 }]
@@ -85,8 +88,8 @@ script = ExtResource("1_xxyeb")
 
 [node name="animator" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_dr6w8")
+animation = &"explode"
 autoplay = "default"
-frame_progress = 0.907922
 
 [node name="CollisionShape2D" parent="ExplosionArea" index="0"]
 shape = SubResource("RectangleShape2D_llp3r")

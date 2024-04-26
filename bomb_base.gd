@@ -4,11 +4,16 @@ class_name bomb_base
 @onready var animator = $animator
 @onready var throw = $throwSound
 @onready var explosion = $explosion
+@onready var explode_timer = $explodeTimer
+var xp = preload("res://xp.tscn")
 @export var speed = 1000
 @export_range(0.0, 1.0) var friction = 0.1
 @export_range(0.0 , 1.0) var acceleration = 0.25
 var playerIsInExplosionArea = false
+var xp_amount = 1
+var amount_of_xp_picked_up = 0
 signal playerExploded
+signal all_xp_picked_up
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,6 +29,7 @@ func _process(delta):
 func explode():
 	animator.play("explode")
 	explosion.play()
+	drop_xp()
 	if playerIsInExplosionArea:
 		playerExploded.emit(position)
 		
@@ -36,23 +42,29 @@ func _on_explode_timer_timeout():
 	explode()
 
 
-func _on_delete_timer_timeout():
-	delete()
-
-
 func _on_explosion_area_body_entered(body):
 	if body.name == "PlayerBody":
 		playerIsInExplosionArea = true
 
 func pause():
-	get_child(2).paused = true
-	get_child(3).paused = true
+	explode_timer.paused = true
 	animator.stop()
 
 func resume():
-	get_child(2).paused = false
-	get_child(3).paused = false
+	explode_timer.paused = false
 	animator.play()
+
+func drop_xp():
+	var instance
+	for i in range(xp_amount):
+		instance = xp.instantiate()
+		add_child(instance)
+
+func _on_xp_picked_up():
+	amount_of_xp_picked_up += 1
+	if amount_of_xp_picked_up == xp_amount:
+		all_xp_picked_up.emit(xp_amount)
+		delete()
 
 func _on_explosion_area_body_exited(body):
 	if body.name == "PlayerBody":
