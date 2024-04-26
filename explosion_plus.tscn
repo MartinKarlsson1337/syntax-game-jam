@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgibbdocp8ub0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_13d5s"]
+size = Vector2(100, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ke1m8"]
+size = Vector2(15, 100)
+
+[node name="ExplosionPlus" type="Node2D"]
+
+[node name="explodeTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="deleteTimer" type="Timer" parent="."]
+wait_time = 3.5
+one_shot = true
+autostart = true
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
+shape = SubResource("RectangleShape2D_13d5s")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ExplosionArea"]
+shape = SubResource("RectangleShape2D_ke1m8")

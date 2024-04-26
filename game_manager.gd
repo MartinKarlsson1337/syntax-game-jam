@@ -1,6 +1,6 @@
 extends Node2D
 
-var bombs = [preload("res://grenade.tscn"), preload("res://c_4.tscn")]
+var bombs = [preload("res://grenade.tscn"), preload("res://c_4.tscn"), preload("res://big_bomb.tscn")]
 var playerPosition = Vector2.ZERO
 @onready var player = $PlayerBody
 @onready var hp = $hp_counter
@@ -16,7 +16,7 @@ func _process(delta):
 	if Input.is_action_pressed('pause'):
 		get_parent().go_to_state('pause')
 
-func spawn_c4(at_position):
+func spawn_random_bomb(at_position):
 	if input_active:
 		var instance = bombs.pick_random().instantiate()
 		instance.position = at_position
@@ -36,7 +36,7 @@ func push_player(direction):
 
 
 func _on_spawn_bomb_timer_timeout():
-	spawn_c4(playerPosition)
+	spawn_random_bomb(playerPosition)
 
 func pause():
 	input_active = false
