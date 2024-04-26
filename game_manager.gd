@@ -1,6 +1,6 @@
 extends Node2D
 
-var bombs = [preload("res://grenade.tscn"), preload("res://c_4.tscn")]
+var bombs = [preload("res://grenade.tscn"), preload("res://c_4.tscn"), preload("res://big_bomb.tscn")]
 var playerPosition = Vector2.ZERO
 @onready var player = $PlayerBody
 @onready var hp = $hp_counter
