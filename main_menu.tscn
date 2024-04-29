@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://d4k3i6lkiuprl"]
+[gd_scene load_steps=15 format=3 uid="uid://d4k3i6lkiuprl"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_sgm0y"]
+[ext_resource type="Texture2D" uid="uid://8yqap8sfkyl7" path="res://bomb_game_title_screen.png" id="2_ccc25"]
 [ext_resource type="PackedScene" uid="uid://cy5gxk8kb74uu" path="res://button.tscn" id="2_jduhk"]
 [ext_resource type="FontFile" uid="uid://dhi4oqbjfmdwp" path="res://joystix monospace.otf" id="3_52sf6"]
 [ext_resource type="AudioStream" uid="uid://bnulvhrfscwap" path="res://DS_STW2_FX_One_Shot_Gameboi_Serpantine.wav" id="4_5f1aj"]
+[ext_resource type="Texture2D" uid="uid://3ejefb4agqkl" path="res://title_screen_bomb.png" id="6_5dln3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dffv4"]
 font = ExtResource("3_52sf6")
@@ -12,7 +14,6 @@ font_size = 100
 [sub_resource type="LabelSettings" id="LabelSettings_qwaot"]
 font = ExtResource("3_52sf6")
 font_size = 100
-font_color = Color(0.705882, 0.321569, 0.321569, 1)
 
 [sub_resource type="Animation" id="Animation_64uu7"]
 length = 0.001
@@ -80,8 +81,47 @@ line_spacing = 2.0
 font = ExtResource("3_52sf6")
 font_size = 40
 
+[sub_resource type="Animation" id="Animation_x5ifn"]
+resource_name = "bomb_shake"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bomb_Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(0.38, 3.03144, 1.86607),
+"update": 0,
+"values": [Vector2(0.38, 0.38), Vector2(0.5, 0.5), Vector2(0.38, 0.38)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bomb_Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(0.38, 3.03144, 1.86607),
+"update": 0,
+"values": [Vector2(-65, 8), Vector2(-59, 0), Vector2(-65, 8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jkq7j"]
+_data = {
+"bomb_shake": SubResource("Animation_x5ifn")
+}
+
 [node name="main_menu" type="Node2D"]
 script = ExtResource("1_sgm0y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-7, 8)
+scale = Vector2(0.498924, 0.457083)
+texture = ExtResource("2_ccc25")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
@@ -93,24 +133,22 @@ position = Vector2(0, 19)
 text = "quit"
 
 [node name="Title" type="Label" parent="."]
-offset_left = -53.0
-offset_top = -55.0
-offset_right = 1026.0
-offset_bottom = 188.0
+offset_left = -54.0
+offset_top = -53.0
+offset_right = 1025.0
+offset_bottom = 190.0
 scale = Vector2(0.1, 0.1)
-text = "you are your
-"
+text = "Blast Boy"
 label_settings = SubResource("LabelSettings_dffv4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label" type="Label" parent="."]
-offset_left = -21.0
-offset_top = -32.0
-offset_right = 394.0
-offset_bottom = 88.0
+offset_left = -95.0
+offset_top = -37.0
+offset_right = 1805.0
+offset_bottom = 83.0
 scale = Vector2(0.1, 0.1)
-text = "enemy"
 label_settings = SubResource("LabelSettings_qwaot")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -142,18 +180,31 @@ text = "Music & sfx:
 Martin Karlsson
 
 art:
+Martin Karlsson
+Eric Jansson
+MirruTatep
+
+code:
 martin karlsson
 eric jansson
 
 fonts:
 Typodermic Fonts
-
-code:
-martin karlsson
-eric jansson"
+"
 label_settings = SubResource("LabelSettings_nagpp")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Bomb_Sprite" type="Sprite2D" parent="."]
+position = Vector2(-61.5246, 3.36608)
+scale = Vector2(0.449509, 0.449509)
+texture = ExtResource("6_5dln3")
+
+[node name="Bomb_animation" type="AnimationPlayer" parent="Bomb_Sprite"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_jkq7j")
+}
 
 [connection signal="button_pressed" from="start" to="." method="_on_start_button_pressed"]
 [connection signal="button_pressed" from="quit" to="." method="_on_quit_button_pressed"]

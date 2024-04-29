@@ -90,7 +90,7 @@ func gain_xp(amount):
 
 func _on_xp_bar_level_up():
 	playerLevel += 1
-	if playerLevel < 13:
+	if playerLevel < 17:
 		get_parent().go_to_state('upgrade')
 	
 

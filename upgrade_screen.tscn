@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://tljyu2ly5ie7"]
+[gd_scene load_steps=9 format=3 uid="uid://ctu15q5nru2j"]
 
 [ext_resource type="Texture2D" uid="uid://by0cyxp5ed7nk" path="res://Menu.png" id="1_5aiwa"]
 [ext_resource type="Script" path="res://upgrade_screen.gd" id="2_vm166"]
 [ext_resource type="FontFile" uid="uid://dhi4oqbjfmdwp" path="res://joystix monospace.otf" id="3_qxmtn"]
-[ext_resource type="PackedScene" uid="uid://dic8esw670f53" path="res://upgrade.tscn" id="4_owyjv"]
+[ext_resource type="PackedScene" path="res://upgrade.tscn" id="4_owyjv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cqsu5"]
 texture = ExtResource("1_5aiwa")
