@@ -207,6 +207,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_c8nbm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label3:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.207843, 0.168627, 0.258824, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_seeim"]
 resource_name = "fade_out"
 length = 8.0
@@ -245,21 +260,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_c8nbm"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Label3:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.207843, 0.168627, 0.258824, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aibin"]
@@ -469,7 +469,6 @@ the bombs!"
 label_settings = SubResource("LabelSettings_si5uv")
 
 [node name="Node2D" type="Node2D" parent="keys"]
-modulate = Color(1, 1, 1, 1)
 script = ExtResource("14_cb278")
 
 [node name="up" type="AnimatedSprite2D" parent="keys/Node2D"]
@@ -493,7 +492,6 @@ sprite_frames = SubResource("SpriteFrames_8lep3")
 autoplay = "default"
 
 [node name="text" type="Node2D" parent="keys"]
-modulate = Color(1, 1, 1, 1)
 
 [node name="Label2" type="Label" parent="keys/text"]
 offset_left = -12.0
