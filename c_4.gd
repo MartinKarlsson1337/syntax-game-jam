@@ -1,2 +1,0 @@
-extends bomb_base
-

@@ -1,13 +1,13 @@
-[gd_scene load_steps=26 format=3 uid="uid://iblgbmfsjont"]
+[gd_scene load_steps=26 format=3 uid="uid://20pjvp6oiu7u"]
 
 [ext_resource type="Script" path="res://big_bomb.gd" id="1_xyfu4"]
-[ext_resource type="Texture2D" path="res://bomb.png" id="2_40vgs"]
-[ext_resource type="Texture2D" path="res://explosion_huge.png" id="2_wpchv"]
+[ext_resource type="Texture2D" uid="uid://couo5eeumfsyc" path="res://bomb.png" id="2_40vgs"]
+[ext_resource type="Texture2D" uid="uid://c2pf5xv0ecp7o" path="res://explosion_huge.png" id="2_wpchv"]
 [ext_resource type="AudioStream" uid="uid://cpl8reiggix75" path="res://ESM_Arcade_Game_Jump_12_Classic_Retro_8_Bit_.wav" id="4_t1mcu"]
 [ext_resource type="AudioStream" uid="uid://biyq7gtq2yjdh" path="res://ESM_8bit_Explosion_Medium_Bomb_Boom_Blast_Cannon_Retro_Old_School_Classic_Cartoon.wav" id="5_jf1aa"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mk0kp"]
-size = Vector2(16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_dgwha"]
+radius = 6.08276
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l5vpn"]
 atlas = ExtResource("2_wpchv")
@@ -114,7 +114,7 @@ animations = [{
 "texture": null
 }],
 "loop": false,
-"name": &"big_explosion",
+"name": &"explode",
 "speed": 14.0
 }, {
 "frames": [{
@@ -213,40 +213,32 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5q6i"]
-radius = 28.0
+radius = 39.0
 
 [node name="Big bomb" type="RigidBody2D"]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_xyfu4")
-speed = 2000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_mk0kp")
-
-[node name="explosion_animator" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.71875, 0.71875)
-sprite_frames = SubResource("SpriteFrames_clnxp")
-animation = &"big_explosion"
-frame = 10
-frame_progress = 1.0
+shape = SubResource("CircleShape2D_dgwha")
 
 [node name="animator" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_clnxp")
-animation = &"stage_4"
+animation = &"explode"
+autoplay = "stage_1"
+frame = 10
+frame_progress = 1.0
 
 [node name="explodeTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 autostart = true
 
-[node name="deleteTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-autostart = true
-
 [node name="ExplosionArea" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
 shape = SubResource("CircleShape2D_j5q6i")
@@ -260,6 +252,5 @@ stream = ExtResource("5_jf1aa")
 volume_db = -15.0
 
 [connection signal="timeout" from="explodeTimer" to="." method="_on_explode_timer_timeout"]
-[connection signal="timeout" from="deleteTimer" to="." method="_on_delete_timer_timeout"]
 [connection signal="body_entered" from="ExplosionArea" to="." method="_on_explosion_area_body_entered"]
 [connection signal="body_exited" from="ExplosionArea" to="." method="_on_explosion_area_body_exited"]

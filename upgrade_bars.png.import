@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1f5av6khgny6"
-path="res://.godot/imported/C4.png-2f3f71ca7b94f645b31d468dcebdcea6.ctex"
+uid="uid://cf8a573buetc6"
+path="res://.godot/imported/upgrade_bars.png-c4bf9b88be6fb48282a031afb989ba27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://C4.png"
-dest_files=["res://.godot/imported/C4.png-2f3f71ca7b94f645b31d468dcebdcea6.ctex"]
+source_file="res://upgrade_bars.png"
+dest_files=["res://.godot/imported/upgrade_bars.png-c4bf9b88be6fb48282a031afb989ba27.ctex"]
 
 [params]
 

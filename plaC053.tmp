@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bi4dosiu0bd52"]
+[gd_scene load_steps=31 format=3 uid="uid://bi4dosiu0bd52"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_1s8qc"]
 [ext_resource type="PackedScene" uid="uid://c5yukhhkf2qpn" path="res://player_body.tscn" id="2_kihrl"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://xp_bar.gd" id="6_x1e47"]
 [ext_resource type="AudioStream" uid="uid://bmpdv5c7780gn" path="res://soundtrack.mp3" id="8_paw33"]
 [ext_resource type="AudioStream" uid="uid://8rngwo3oir1k" path="res://ouch.mp3" id="9_qe75a"]
+[ext_resource type="Texture2D" uid="uid://by0cyxp5ed7nk" path="res://Menu.png" id="10_v3fvp"]
+[ext_resource type="FontFile" uid="uid://dhi4oqbjfmdwp" path="res://joystix monospace.otf" id="11_ivxci"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ejowx"]
 texture = ExtResource("4_tqvxv")
@@ -202,6 +204,26 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cqsu5"]
+texture = ExtResource("10_v3fvp")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_eog8d"]
+sources/0 = SubResource("TileSetAtlasSource_cqsu5")
+
+[sub_resource type="LabelSettings" id="LabelSettings_o874w"]
+font = ExtResource("11_ivxci")
+font_size = 70
+font_color = Color(0.917647, 0.901961, 0.87451, 1)
+
 [node name="play_state" type="Node2D"]
 script = ExtResource("1_1s8qc")
 
@@ -254,6 +276,47 @@ sprite_frames = SubResource("SpriteFrames_e8odl")
 animation = &"0"
 autoplay = "0"
 script = ExtResource("6_x1e47")
+
+[node name="upgrade_screen" type="TileMap" parent="."]
+visible = false
+texture_filter = 1
+tile_set = SubResource("TileSet_eog8d")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65539, 65536, 1, -65538, 65536, 1, -65537, 65536, 1, -131072, 65536, 1, -131071, 65536, 1, -131070, 65536, 1, -2, 65536, 1, -1, 65536, 1, -65536, 65536, 1, -65535, 65536, 1, -65534, 65536, 1, 2, 65536, 1, 65538, 65536, 1, 131074, 65536, 1, -3, 65536, 1, 65533, 65536, 1, 131069, 65536, 1, 196605, 65536, 1, 196606, 65536, 1, 196607, 65536, 1, 131072, 65536, 1, 131073, 65536, 1, 65537, 65536, 1, 65536, 65536, 1, 131071, 65536, 1, 131070, 65536, 1, 65534, 65536, 1, 65535, 65536, 1, 0, 65536, 1, 1, 65536, 1, -131077, 0, 0, 196612, 131072, 2, 262139, 131072, 0, -196604, 0, 2, 131076, 65536, 2, 65540, 65536, 2, 4, 65536, 2, -65532, 65536, 2, -131068, 65536, 2, 196611, 131072, 1, 196610, 131072, 1, 196609, 131072, 1, 196608, 131072, 1, 262143, 131072, 1, 262142, 131072, 1, 262141, 131072, 1, 262140, 131072, 1, 196603, 65536, 0, 131067, 65536, 0, 65531, 65536, 0, -5, 65536, 0, -65541, 65536, 0, -131076, 0, 1, -131075, 0, 1, -131074, 0, 1, -131073, 0, 1, -196608, 0, 1, -196607, 0, 1, -196606, 0, 1, -196605, 0, 1, -131069, 65536, 1, -4, 65536, 1, -65540, 65536, 1, 131075, 65536, 1, 65539, 65536, 1, 3, 65536, 1, -65533, 65536, 1, 196604, 65536, 1, 131068, 65536, 1, 65532, 65536, 1)
+
+[node name="lvlup" type="Label" parent="upgrade_screen"]
+offset_left = -104.0
+offset_top = -48.0
+offset_right = 1307.0
+offset_bottom = 72.0
+scale = Vector2(0.15, 0.15)
+text = "level up!"
+label_settings = SubResource("LabelSettings_o874w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="desc" type="Label" parent="upgrade_screen"]
+offset_left = -69.0
+offset_top = -35.0
+offset_right = 1342.0
+offset_bottom = 85.0
+scale = Vector2(0.1, 0.1)
+text = "CHoose An Upgrade"
+label_settings = SubResource("LabelSettings_o874w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="or" type="Label" parent="upgrade_screen"]
+offset_left = -70.0
+offset_top = 8.0
+offset_right = 1341.0
+offset_bottom = 128.0
+scale = Vector2(0.1, 0.1)
+text = "or
+"
+label_settings = SubResource("LabelSettings_o874w")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="timeout" from="SpawnBombTimer" to="." method="_on_spawn_bomb_timer_timeout"]
 [connection signal="level_up" from="xp_bar" to="." method="_on_xp_bar_level_up"]

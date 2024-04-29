@@ -24,7 +24,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	linear_velocity = linear_velocity.lerp(Vector2.ZERO, friction)
-	pass
 
 func explode():
 	animator.play("explode")
@@ -48,11 +47,10 @@ func _on_explosion_area_body_entered(body):
 
 func pause():
 	explode_timer.paused = true
-	animator.stop()
 
 func resume():
 	explode_timer.paused = false
-	animator.play()
+	animator.get_sprite_frames()
 
 func drop_xp():
 	var instance

@@ -12,7 +12,8 @@ size = Vector2(11, 15)
 radius = 28.0
 
 [node name="bomb_base" type="RigidBody2D"]
-collision_layer = 0
+texture_filter = 2
+collision_layer = 2
 collision_mask = 0
 gravity_scale = 0.0
 
@@ -21,6 +22,7 @@ position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_mk0kp")
 
 [node name="animator" type="AnimatedSprite2D" parent="."]
+z_index = -1
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_p65rc")
 
@@ -30,6 +32,7 @@ one_shot = true
 autostart = true
 
 [node name="ExplosionArea" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
 shape = SubResource("CircleShape2D_j5q6i")

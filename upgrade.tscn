@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://dic8esw670f53"]
+
+[ext_resource type="Texture2D" uid="uid://cf8a573buetc6" path="res://upgrade_bars.png" id="1_u83qi"]
+[ext_resource type="Script" path="res://upgrade_bar.gd" id="2_v1ayt"]
+[ext_resource type="PackedScene" uid="uid://davei3fcm2k4" path="res://upgrade_button.tscn" id="3_qkrw2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6muq"]
+atlas = ExtResource("1_u83qi")
+region = Rect2(0, 32, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7twyd"]
+atlas = ExtResource("1_u83qi")
+region = Rect2(24, 16, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7vtb"]
+atlas = ExtResource("1_u83qi")
+region = Rect2(0, 16, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1ugk"]
+atlas = ExtResource("1_u83qi")
+region = Rect2(24, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5klir"]
+atlas = ExtResource("1_u83qi")
+region = Rect2(0, 0, 24, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bioar"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6muq")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7twyd")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7vtb")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1ugk")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5klir")
+}],
+"loop": true,
+"name": &"5",
+"speed": 5.0
+}]
+
+[node name="upgrade" type="AnimatedSprite2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_bioar")
+animation = &"1"
+autoplay = "1"
+script = ExtResource("2_v1ayt")
+
+[node name="upgrade_button" parent="." instance=ExtResource("3_qkrw2")]
+position = Vector2(21, 4)
+
+[connection signal="button_pressed" from="upgrade_button" to="." method="_on_upgrade_button_button_pressed"]
