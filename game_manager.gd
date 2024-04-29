@@ -36,6 +36,8 @@ func spawn_c4(amount):
 		var at_position = player.position
 		if input_active:
 			var instance = bombs.pick_random().instantiate()
+			var bomb_scale = 1 + (0.1 * (bomb_radius - 1))
+			instance.bomb_explosion_size(bomb_scale)
 			instance.position = at_position
 			instance.get_child(2).wait_time = 3 * 0.75 ** fuse_time
 			instance.all_xp_picked_up.connect(gain_xp)
@@ -109,8 +111,9 @@ func _on_upgraded(level, upgrade_name):
 	get_parent().go_to_state('play')
 	
 
-func instantiate_warning(warning, future_position):
+func instantiate_warning(warning, future_position, scale):
 	var warning_instance = warning.instantiate()
+	warning_instance.rescale_warning(scale)
 	warning_instance.new_position(future_position)  # Custom function to set position
 	add_child(warning_instance)
 	return warning_instance

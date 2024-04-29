@@ -15,12 +15,13 @@ var xp_amount = 1
 var amount_of_xp_picked_up = 0
 signal playerExploded
 signal all_xp_picked_up
+var explosion_scale = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	linear_velocity = throw_direction * speed
 	var future_position = calculate_stopping_position(linear_velocity)
-	get_parent().instantiate_warning(warning, future_position)
+	get_parent().instantiate_warning(warning, future_position, explosion_scale)
 	playerExploded.connect(get_parent()._on_player_exploded)
 	throw.play()
 
@@ -33,6 +34,12 @@ func calculate_stopping_position(_linear_velocity):
 	var stopping_vector = _linear_velocity.normalized() * stopping_distance  # Directional stopping distance
 	var stopping_position = position + stopping_vector  # Compute final position vector
 	return stopping_position
+	
+func bomb_explosion_size(_scale):
+	explosion_scale = _scale
+	$animator.scale = Vector2(explosion_scale, explosion_scale)
+	$ExplosionArea/CollisionShape2D.scale = Vector2(explosion_scale, explosion_scale)
+	
 
 func explode():
 	animator.play("explode")
