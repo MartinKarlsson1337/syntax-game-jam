@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d4k3i6lkiuprl"]
+[gd_scene load_steps=11 format=3 uid="uid://d4k3i6lkiuprl"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_sgm0y"]
 [ext_resource type="PackedScene" uid="uid://cy5gxk8kb74uu" path="res://button.tscn" id="2_jduhk"]
@@ -75,6 +75,11 @@ _data = {
 "fade_out": SubResource("Animation_lde0k")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_nagpp"]
+line_spacing = 2.0
+font = ExtResource("3_52sf6")
+font_size = 40
+
 [node name="main_menu" type="Node2D"]
 script = ExtResource("1_sgm0y")
 
@@ -126,6 +131,29 @@ color = Color(0, 0, 0, 0)
 [node name="blip" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_5f1aj")
 volume_db = -20.0
+
+[node name="credits" type="Label" parent="."]
+offset_left = -106.0
+offset_top = 7.0
+offset_right = 2034.0
+offset_bottom = 1135.0
+scale = Vector2(0.1, 0.1)
+text = "Music & sfx:
+Martin Karlsson
+
+art:
+martin karlsson
+eric jansson
+
+fonts:
+Typodermic Fonts
+
+code:
+martin karlsson
+eric jansson"
+label_settings = SubResource("LabelSettings_nagpp")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="button_pressed" from="start" to="." method="_on_start_button_pressed"]
 [connection signal="button_pressed" from="quit" to="." method="_on_quit_button_pressed"]
