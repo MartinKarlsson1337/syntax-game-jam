@@ -4,7 +4,11 @@
 [ext_resource type="Script" path="res://c_4.gd" id="1_xxyeb"]
 [ext_resource type="PackedScene" uid="uid://bj0fa3mhuclym" path="res://bomb_base.tscn" id="1_xyjug"]
 [ext_resource type="Texture2D" uid="uid://blaeyo7255lp5" path="res://tinySFX.png" id="2_ja6l6"]
+<<<<<<< Updated upstream
 [ext_resource type="Texture2D" uid="uid://cvewjbgkq57ow" path="res://explosion_plus.png" id="5_2g01b"]
+=======
+[ext_resource type="Texture2D" uid="uid://cvewjbgkq57ow" path="res://explosion_plus.png" id="4_ci1ap"]
+>>>>>>> Stashed changes
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_medwj"]
 atlas = ExtResource("1_u268o")

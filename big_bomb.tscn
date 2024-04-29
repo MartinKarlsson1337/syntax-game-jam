@@ -3,6 +3,11 @@
 [ext_resource type="Script" path="res://big_bomb.gd" id="1_xyfu4"]
 [ext_resource type="Texture2D" uid="uid://couo5eeumfsyc" path="res://bomb.png" id="2_40vgs"]
 [ext_resource type="Texture2D" uid="uid://c2pf5xv0ecp7o" path="res://explosion_huge.png" id="2_wpchv"]
+<<<<<<< Updated upstream
+=======
+[ext_resource type="AudioStream" uid="uid://cpl8reiggix75" path="res://ESM_Arcade_Game_Jump_12_Classic_Retro_8_Bit_.wav" id="4_t1mcu"]
+[ext_resource type="AudioStream" uid="uid://biyq7gtq2yjdh" path="res://ESM_8bit_Explosion_Medium_Bomb_Boom_Blast_Cannon_Retro_Old_School_Classic_Cartoon.wav" id="5_jf1aa"]
+>>>>>>> Stashed changes
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mk0kp"]
 size = Vector2(16, 16)
@@ -171,6 +176,11 @@ animations = [{
 "name": &"explosion",
 "speed": 16.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w7mk1")
@@ -218,7 +228,7 @@ collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_xyfu4")
-speed = 2000
+speed = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mk0kp")
@@ -226,13 +236,11 @@ shape = SubResource("RectangleShape2D_mk0kp")
 [node name="explosion_animator" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.71875, 0.71875)
 sprite_frames = SubResource("SpriteFrames_clnxp")
-animation = &"big_explosion"
-frame = 10
-frame_progress = 1.0
+animation = &"new_animation"
 
 [node name="animator" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_clnxp")
-animation = &"stage_4"
+animation = &"stage_1"
 
 [node name="explodeTimer" type="Timer" parent="."]
 wait_time = 3.0

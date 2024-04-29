@@ -1,5 +1,6 @@
 extends Node2D
 
+
 var bombs = [preload("res://grenade.tscn"), preload("res://c_4.tscn"), preload("res://big_bomb.tscn")]
 var playerPosition = Vector2.ZERO
 @onready var player = $PlayerBody
@@ -59,3 +60,21 @@ func resume_bombs():
 	var bombs = children.slice(5, children.size())
 	for bomb in bombs:
 		bomb.resume()
+<<<<<<< Updated upstream
+=======
+
+func gain_xp(amount):
+	xp_bar.gain_xp(amount)
+
+func _on_xp_bar_level_up():
+	playerLevel += 1
+	print("Leveled up to lvl. " + str(playerLevel))
+
+func instantiate_warning(warning, future_position):
+	var warning_instance = warning.instantiate()
+	warning_instance.new_position(future_position)  # Custom function to set position
+	add_child(warning_instance)
+	return warning_instance
+	
+	
+>>>>>>> Stashed changes

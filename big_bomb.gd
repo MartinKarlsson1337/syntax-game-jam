@@ -3,6 +3,7 @@ extends bomb_base
 @onready var explosion_animator = $explosion_animator
 @onready var timer = $explodeTimer
 var animationStage = "stage_1"
+
 # Called when the node enters the scene tree for the first time.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -14,7 +15,8 @@ func _process(delta):
 	elif (timer.get_time_left() < (2 * timer.wait_time / 3.0)): 
 		animationStage = "stage_2"
 	animator.play(animationStage)
-	linear_velocity = linear_velocity.lerp(Vector2.ZERO, friction)
+	
+	linear_velocity -= linear_velocity * friction * delta
 	pass
 
 func explode():
@@ -22,7 +24,7 @@ func explode():
 	explosion_animator.play("big_explosion")
 	if playerIsInExplosionArea:
 		playerExploded.emit(position)
-		
+
 
 func pause():
 	get_child(3).paused = true
