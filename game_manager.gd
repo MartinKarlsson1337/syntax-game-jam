@@ -102,3 +102,10 @@ func _on_upgraded(level, upgrade_name):
 			multi_throw = multi_throw + 1
 	get_parent().go_to_state('play')
 	
+
+func instantiate_warning(warning, future_position):
+	var warning_instance = warning.instantiate()
+	warning_instance.new_position(future_position)  # Custom function to set position
+	add_child(warning_instance)
+	return warning_instance
+	
