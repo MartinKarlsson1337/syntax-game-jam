@@ -6,8 +6,9 @@ class_name bomb_base
 @onready var explosion = $explosion
 @onready var explode_timer = $explodeTimer
 var xp = preload("res://xp.tscn")
-@export var speed = 1000
-@export_range(0.0, 1.0) var friction = 0.1
+var warning = preload("res://warning_circle.tscn")
+@export var speed = 400
+@export_range(0.0, 1.0) var friction = 10
 @export_range(0.0 , 1.0) var acceleration = 0.25
 var playerIsInExplosionArea = false
 var xp_amount = 1
@@ -17,13 +18,21 @@ signal all_xp_picked_up
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	linear_velocity = linear_velocity.lerp(throw_direction * speed, acceleration)
+	linear_velocity = throw_direction * speed
+	var future_position = calculate_stopping_position(linear_velocity)
+	get_parent().instantiate_warning(warning, future_position)
 	playerExploded.connect(get_parent()._on_player_exploded)
 	throw.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	linear_velocity = linear_velocity.lerp(Vector2.ZERO, friction)
+	linear_velocity -= linear_velocity * friction * delta
+
+func calculate_stopping_position(_linear_velocity):
+	var stopping_distance = _linear_velocity.length() / friction  # Calculate the stopping distance
+	var stopping_vector = _linear_velocity.normalized() * stopping_distance  # Directional stopping distance
+	var stopping_position = position + stopping_vector  # Compute final position vector
+	return stopping_position
 
 func explode():
 	animator.play("explode")
