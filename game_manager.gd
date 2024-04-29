@@ -102,7 +102,10 @@ func _on_upgraded(level, upgrade_name):
 			bomb_cooldown = bomb_cooldown + 1
 			get_child(4).wait_time = 2 * 0.75 ** bomb_cooldown
 		'multi_throw':
-			multi_throw = multi_throw + 1
+			multi_throw += 1
+			xp_bar.multi_throw += 1
+			
+	xp_bar.update_needed()
 	get_parent().go_to_state('play')
 	
 
