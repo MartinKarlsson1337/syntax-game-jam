@@ -31,14 +31,16 @@ func _process(delta):
 	if Input.is_action_just_pressed('pause'):
 		get_parent().go_to_state('pause')
 
-func spawn_c4(at_position, amount):
-	if input_active:
-		for i in range(amount):
+func spawn_c4(amount):
+	for i in range(amount):
+		var at_position = player.position
+		if input_active:
 			var instance = bombs.pick_random().instantiate()
 			instance.position = at_position
 			instance.get_child(2).wait_time = 3 * 0.75 ** fuse_time
 			instance.all_xp_picked_up.connect(gain_xp)
 			add_child(instance)
+			await get_tree().create_timer(0.2).timeout
 
 func _on_player_exploded(bomb_position):
 	playerHealth = playerHealth-1
@@ -56,7 +58,7 @@ func push_player(direction):
 
 
 func _on_spawn_bomb_timer_timeout():
-	spawn_c4(playerPosition, multi_throw)
+	spawn_c4(multi_throw)
 
 func pause():
 	input_active = false
@@ -86,7 +88,8 @@ func gain_xp(amount):
 
 func _on_xp_bar_level_up():
 	playerLevel += 1
-	get_parent().go_to_state('upgrade')
+	if playerLevel < 13:
+		get_parent().go_to_state('upgrade')
 	
 
 func _on_upgraded(level, upgrade_name):
