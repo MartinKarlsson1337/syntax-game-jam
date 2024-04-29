@@ -8,6 +8,7 @@ var playerPosition = Vector2.ZERO
 @onready var fade_in = $AnimationPlayer
 @onready var ouch = $ouch
 @onready var xp_bar = $xp_bar
+@onready var xp_sound = $xp_sound
 var playerHealth = 3
 var playerLevel = 1
 var multi_throw = 1
@@ -80,6 +81,7 @@ func resume_bombs():
 		bomb.resume()
 
 func gain_xp(amount):
+	xp_sound.play()
 	xp_bar.gain_xp(amount)
 
 func _on_xp_bar_level_up():

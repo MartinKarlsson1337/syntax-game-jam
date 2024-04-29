@@ -229,8 +229,8 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_clnxp")
 animation = &"explode"
 autoplay = "stage_1"
-frame = 10
-frame_progress = 1.0
+frame = 6
+frame_progress = 0.0629339
 
 [node name="explodeTimer" type="Timer" parent="."]
 wait_time = 3.0

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://duu3o51apmyt7"]
+
+[ext_resource type="Texture2D" uid="uid://womghcarvj3k" path="res://XP.png" id="1_m16cp"]
+[ext_resource type="Script" path="res://xp.gd" id="2_h0hbb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ql0oj"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ivga"]
+radius = 20.0
+
+[node name="Sprite2D" type="Sprite2D"]
+z_index = -1
+texture_filter = 1
+texture = ExtResource("1_m16cp")
+script = ExtResource("2_h0hbb")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ql0oj")
+
+[node name="magnet_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="magnet_area"]
+shape = SubResource("CircleShape2D_6ivga")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="magnet_area" to="." method="_on_magnet_area_body_entered"]
