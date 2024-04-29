@@ -88,20 +88,15 @@ func _on_xp_bar_level_up():
 	
 
 func _on_upgraded(level, upgrade_name):
-	print(upgrade_name)
 	match upgrade_name:
 		'bomb_radius':
 			bomb_radius = bomb_radius + 1
-			print(bomb_radius)
 		'fuse_time':
 			fuse_time = fuse_time + 1
-			print(fuse_time)
 		'bomb_cd':
 			bomb_cooldown = bomb_cooldown + 1
 			get_child(4).wait_time = 2 * 0.75 ** bomb_cooldown
-			print(bomb_cooldown)
 		'multi_throw':
 			multi_throw = multi_throw + 1
-			print(multi_throw)
 	get_parent().go_to_state('play')
 	
