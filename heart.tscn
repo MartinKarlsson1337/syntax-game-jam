@@ -29,6 +29,9 @@ tracks/1/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_t58d7"]
+resource_name = "nothing"
+
 [sub_resource type="Animation" id="Animation_7pbwo"]
 resource_name = "spin_and_disappear"
 length = 0.5
@@ -56,9 +59,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
 }
-
-[sub_resource type="Animation" id="Animation_t58d7"]
-resource_name = "nothing"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iscs1"]
 _data = {

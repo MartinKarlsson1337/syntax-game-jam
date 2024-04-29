@@ -8,7 +8,7 @@ func _ready():
 	for i in range(hp):
 		var instance = heart_scene.instantiate()
 		instance.position.y = 0
-		instance.position.x = 0 + 18*i
+		instance.position.x = 0 + 17*i
 		print(instance.position)
 		self.add_child(instance)
 		hearts.append(instance)
